@@ -68,7 +68,7 @@ def extract_financial_entities(text):
     return list(entities)
 
 def main():
-    st.set_page_config(page_title="Financial News Intelligence Agent", page_icon="📉",layout="wide")
+    st.set_page_config(page_title="FinSage", page_icon="📉",layout="wide")
     st.title("📉 Financial News Intelligence Agent")
     st.markdown("""
         <style>
@@ -96,7 +96,7 @@ def main():
         st.error("Please set your NEWSAPI_KEY in the .env file")
         return
 
-    # Sidebar filters
+    # Sidebar
     st.sidebar.header("Filters & Settings")
     st.sidebar.markdown(
         """
@@ -131,7 +131,7 @@ def main():
         help="Choose how detailed the article summaries should be."
     )
 
-    llm = load_llm()  # Load once for performance
+    llm = load_llm()
 
     for i, article in enumerate(articles, 1):
         title = article.get("title", "No Title")
@@ -153,7 +153,7 @@ def main():
             with st.spinner("Summarizing article..."):
                 summary = summarize_text(description, length_label=summary_length)
 
-            # Use columns for summary, sentiment, and link
+
             col1, col2, col3 = st.columns([4, 1, 1])
 
             with col1:
