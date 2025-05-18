@@ -1,0 +1,7 @@
+langchain
+langchain-community
+requests
+streamlit
+python-dotenv
+textblob
+spacy
