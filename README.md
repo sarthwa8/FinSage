@@ -2,14 +2,15 @@
 
 Stay ahead of the markets — intelligently.
 
-This Streamlit-based app fetches the latest financial headlines, summarizes them using a **local LLM (Mistral via Ollama)**, extracts key financial entities, and analyzes sentiment — giving you a fast, AI-powered overview of the financial world.
+This Streamlit-based application is a comprehensive financial intelligence tool. It fetches live news headlines, provides near-instant summaries using the high-speed Groq API (with Llama 3), analyzes sentiment, extracts key entities, and features an interactive financial chatbot to answer your questions.
 
 ---
 
 ## 🚀 Features
 
 - 📰 **Live Financial News Feed** — powered by [NewsAPI](https://newsapi.org/)
-- 🧠 **AI Summarization** — local LLM (Mistral via Ollama) generates customizable-length summaries
+- 🧠 **AI Summarization** — Uses the Groq API with Llama 3 to generate customizable-length summaries almost instantly generates
+- 💬 **Interactive Financial Chatbot** - Ask questions about markets, economics, or financial concepts and get instant answers from the AI.
 - 😊 **Sentiment Analysis** — TextBlob shows how positive, negative, or neutral each article is
 - 🏷️ **Named Entity Recognition** — highlights key financial entities (ORG, MONEY, GPE, etc.)
 - 🔍 **Keyword Filtering** — instantly find relevant articles
@@ -19,20 +20,18 @@ This Streamlit-based app fetches the latest financial headlines, summarizes them
 
 ## 🛠️ Tech Stack
 
-| Category            | Tools Used                               |
-|---------------------|-------------------------------------------|
-| 🧠 Language Model    | Mistral (via [Ollama](https://ollama.com/)) |
-| 🔍 Summarization     | LangChain + PromptTemplate + Ollama       |
-| 🌐 News API          | [NewsAPI.org](https://newsapi.org/)       |
-| 💬 Sentiment         | TextBlob                                  |
-| 🧾 Entity Extraction | spaCy (NER with `en_core_web_sm`)         |
-| 🎨 UI Framework      | Streamlit                                 |
+| Category             | Tools Used                          |
+| -------------------- | ----------------------------------- |
+| 🧠 Language Model    | Llama 3 (via Groq API)              |
+| 🔍 Summarization     | LangChain + langchain-groq.         |
+| 🌐 News API          | [NewsAPI.org](https://newsapi.org/) |
+| 💬 Sentiment         | TextBlob                            |
+| 🧾 Entity Extraction | spaCy (NER with `en_core_web_sm`)   |
+| 🎨 UI Framework      | Streamlit                           |
 
 ---
 
 ## 🧑‍💻 Local Setup
-
-> ⚠️ Requires Ollama installed and Mistral model pulled locally.
 
 ### 1. Clone the Repository
 
@@ -42,7 +41,7 @@ cd FinSage
 ### 2. Set Up a Virtual Environment
 
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate # On Windows: .venv\Scripts\activate
 
 ### 3. Install Dependencies
 
@@ -54,16 +53,9 @@ python -m spacy download en_core_web_sm
 Create a `.env` file in the root directory and add your NewsAPI key:
 
 NEWSAPI_KEY=your_newsapi_key_here
+GROQ_API_KEY="gsk_your_groq_api_key_here"
 
-### 5. Ensure Mistral is Available in Ollama
-
-Make sure Ollama is installed and the Mistral model is running locally:
-
-ollama run mistral
-
-> The app uses LangChain with the local `mistral` model served via Ollama.
-
-### 6. Launch the Streamlit App
+### 5. Launch the Streamlit App
 
 streamlit run app.py
 
@@ -93,11 +85,10 @@ Contributions are welcome! Please open issues or pull requests for improvements 
 
 ## 🙏 Acknowledgements
 
-- [NewsAPI](https://newsapi.org/) for financial news data  
-- [Ollama](https://ollama.com/) and [Mistral](https://mistral.ai/) for local LLM capabilities  
-- [LangChain](https://github.com/hwchase17/langchain) for LLM integration  
-- [Streamlit](https://streamlit.io/) for app framework  
+- [NewsAPI](https://newsapi.org/) for financial news data
+- [Ollama](https://ollama.com/) and [Mistral](https://mistral.ai/) for local LLM capabilities
+- [LangChain](https://github.com/hwchase17/langchain) for LLM integration
+- [Streamlit](https://streamlit.io/) for app framework
 - [spaCy](https://spacy.io/) for entity extraction
 
 ---
-
