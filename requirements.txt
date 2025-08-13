@@ -1,7 +1,9 @@
-langchain
-langchain-community
-requests
 streamlit
-python-dotenv
+requests
 textblob
+langchain
+langchain-groq
+python-dotenv
 spacy
+pandas
+langchain-core

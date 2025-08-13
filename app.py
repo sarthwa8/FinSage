@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from textblob import TextBlob
-from langchain_community.llms import Ollama
+from langchain_huggingface import HuggingFaceEndpoint
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from dotenv import load_dotenv
@@ -31,7 +31,14 @@ def fetch_news(api_key, page_size=20):
 
 
 def load_llm():
-    return Ollama(model="mistral")
+    return HuggingFaceEndpoint(
+    repo_id="openai/gpt-oss-20b", 
+    task="text-generation",
+    temperature=0.7,
+    max_new_tokens=512,
+    huggingfacehub_api_token=os.getenv("HF_API_KEY")
+)
+
 
 
 @st.cache_data(show_spinner=False)
@@ -44,10 +51,7 @@ def summarize_text(text, length_label="Short"):
     }
     prompt = PromptTemplate.from_template(prompt_templates[length_label])
     llm = load_llm()
-    chain = LLMChain(llm=llm, prompt=prompt)
-    return chain.run(text=text)
-
-
+    return (prompt | llm).invoke({"text": text})
 
 def analyze_sentiment(text):
     blob = TextBlob(text)
